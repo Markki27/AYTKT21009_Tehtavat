@@ -1,0 +1,20 @@
+note over Selain:
+    GET - request tehty
+    Lomakkeen täyttö ja lähetys
+end note
+
+Selain->Palvelin: HTTP POST /new_note
+
+note over Palvelin:
+    Käsittelee POST-requestin ja luo olion, jonka
+    jälkeen se lisätään notes taulukkoon.
+end note 
+
+Palvelin-->Selain: 302 redirect /notes
+
+note over Selain
+    Selain tekee sivulatauksen sekä GET pyynnön /notes sivulle
+end note
+
+Selain->Palvelin: HTTP GET /notes
+Palvelin-->Selain: return HTML,CSS,JS ja JSON ym.

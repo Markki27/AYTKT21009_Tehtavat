@@ -1,0 +1,25 @@
+Selain->Selain: HTTP POST
+
+note over Selain
+    Javascript estää "normaalin" lähettämisen
+    e.preventDefault() avulla.
+    end note
+    
+note over Selain
+    Selain käsittelee alkuperäisen POST:n tiedot
+    ja muuttaa sen json muotoon aikaleiman kanssa.
+    Selain lisää uuden noten myös notes taulukkoon.
+end note
+
+note over Selain
+    Selain piirtää notet uudelleen
+    ja lähettää tallennuspyynnön palvelimelle.
+end note
+
+Selain->Palvelin: POST JSON /new_note_spa
+
+note over Palvelin
+    Käsittele Json muotoinen data ja tallenna se.
+end note
+
+Palvelin-->Selain: Response 201 Created + JSON {"message":"note created"}
