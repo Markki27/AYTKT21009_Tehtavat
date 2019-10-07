@@ -6,11 +6,18 @@ const Button = ({onClick, text}) => <button onClick={onClick}>{text}</button>
 
 const Statistics = ({upvotes, neutralvotes, downvotes}) => {
 
+    const all = upvotes + neutralvotes + downvotes
+    const average_value = (upvotes*1 + neutralvotes*0 + downvotes*-1) / all
+    const positive_percent = upvotes * 100 / all
+
     return (
         <>
             <p>Good: {upvotes} <br/>
             Neutral: {neutralvotes}<br/>
-            Bad: {downvotes}
+            Bad: {downvotes}<br/>
+            All: {all} <br/>
+            Average: {average_value} <br/>
+            Positive: {positive_percent} %
             </p>
         </>
     )
