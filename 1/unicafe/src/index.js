@@ -23,12 +23,12 @@ const Statistics = ({upvotes, neutralvotes, downvotes}) => {
             <h1>Statistics</h1>
             <table>
                 <tbody>
-                    <Statistic text="Good" value={upvotes}/>
-                    <Statistic text="Neutral" value={neutralvotes}/>
-                    <Statistic text="Bad" value={downvotes}/>
-                    <Statistic text="All" value={all}/>
-                    <Statistic text="Average" value={average_value}/>
-                    <Statistic text="Positive" value={positive_percent}/>
+                <Statistic text="Good" value={upvotes}/>
+                <Statistic text="Neutral" value={neutralvotes}/>
+                <Statistic text="Bad" value={downvotes}/>
+                <Statistic text="All" value={all}/>
+                <Statistic text="Average" value={average_value}/>
+                <Statistic text="Positive" value={positive_percent}/>
                 </tbody>
             </table>
         </>
