@@ -21,21 +21,26 @@ const Statistics = ({upvotes, neutralvotes, downvotes}) => {
     return (
         <>
             <h1>Statistics</h1>
-            <Statistic text="Good" value={upvotes}/>
-            <Statistic text="Neutral" value={neutralvotes}/>
-            <Statistic text="Bad" value={downvotes}/>
-            <Statistic text="All" value={all}/>
-            <Statistic text="Average" value={average_value}/>
-            <Statistic text="Positive" value={positive_percent}/>
+            <table>
+                <tbody>
+                <Statistic text="Good" value={upvotes}/>
+                <Statistic text="Neutral" value={neutralvotes}/>
+                <Statistic text="Bad" value={downvotes}/>
+                <Statistic text="All" value={all}/>
+                <Statistic text="Average" value={average_value}/>
+                <Statistic text="Positive" value={positive_percent}/>
+                </tbody>
+            </table>
         </>
     )
 }
 
 const Statistic = ({text, value}) => {
     return (
-        <>
-            <p>{text}: {value}</p>
-        </>
+        <tr>
+            <td>{text}</td>
+            <td>{value}</td>
+        </tr>
     )
 }
 
