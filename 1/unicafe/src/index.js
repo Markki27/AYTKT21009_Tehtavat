@@ -10,8 +10,17 @@ const Statistics = ({upvotes, neutralvotes, downvotes}) => {
     const average_value = (upvotes*1 + neutralvotes*0 + downvotes*-1) / all
     const positive_percent = upvotes * 100 / all
 
+    if (all === 0) {
+        return (
+            <>
+            <p>No feedback given.</p>
+            </>
+        )
+    }
+
     return (
         <>
+            <h1>Statistics</h1>
             <p>Good: {upvotes} <br/>
             Neutral: {neutralvotes}<br/>
             Bad: {downvotes}<br/>
