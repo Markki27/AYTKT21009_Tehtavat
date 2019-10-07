@@ -1,30 +1,53 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import ReactDOM from 'react-dom'
+
+
+const ShowAnecdote = ({title, anecdote, votes}) => {
+    return (
+        <div>
+            <h1>{title}</h1>
+            <p>{anecdote}</p>
+            <p>has {votes} votes</p>
+        </div>
+    )
+}
+
+const Button = ({onClick, text}) => <button onClick={onClick}>{text}</button>
 
 const App = (props) => {
     const empty_array = new Array(anecdotes.length).fill(0)
     const [selected, setSelected] = useState(0)
     const [points, setPoints] = useState(empty_array)
+    const [max, setMax] = useState(0)
+
+
+    const setRandom = ({length}) => {
+        return () => {
+            const new_selected = Math.floor(Math.random() * length);
+            setSelected(new_selected)
+        }
+    }
 
     const setVote = ({selected}) => {
-        const copy = {...points}
-        copy[selected] += 1
-        setPoints(copy)
-        console.log('points', copy)
+        return () => {
+            const copy = {...points}
+            copy[selected] += 1
+            setPoints(copy)
+
+            // Loopataan pointsien joukosta se jolla on eniten pisteitä
+            const max_key = Object.keys(copy).reduce(function (a, b) {
+                return copy[a] > copy[b] ? a : b
+            });
+            setMax(max_key)
+        }
     }
 
     return (
         <div>
-            <p>{props.anecdotes[selected]}</p>
-            <p> has {points[selected]} votes</p>
-
-            <button onClick={ () => setSelected(Math.floor(Math.random() * anecdotes.length))}>
-                Next anecdote
-            </button>
-
-            <button onClick={ () => setVote({selected}) }>
-                Vote for this anecdote!
-            </button>
+            <ShowAnecdote title='Anecdote of the day' anecdote={props.anecdotes[selected]} votes={points[selected]}/>
+            <Button onClick={setRandom(props.anecdotes)} text='Next anecdote'/>
+            <Button onClick={setVote({selected})} text=' Vote for this anecdote!'/>
+            <ShowAnecdote title='Anecdote with most votes' anecdote={props.anecdotes[max]} votes={points[max]}/>
         </div>
     )
 }
@@ -39,6 +62,6 @@ const anecdotes = [
 ]
 
 ReactDOM.render(
-    <App anecdotes={anecdotes} />,
+    <App anecdotes={anecdotes}/>,
     document.getElementById('root')
 )
